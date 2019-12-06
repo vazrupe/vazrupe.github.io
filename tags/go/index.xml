@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>go on CodeFIct</title>
+    <link>https://codefict.dev/tags/go/</link>
+    <description>Recent content in go on CodeFIct</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>kr-ko</language>
+    <lastBuildDate>Fri, 05 Aug 2016 18:48:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://codefict.dev/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Go에서 io.Seeker 인터페이스로 버퍼 오프셋(offset) 확인하기</title>
+      <link>https://codefict.dev/posts/2016/08/check-buffer-offset-on-golang/</link>
+      <pubDate>Fri, 05 Aug 2016 18:48:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/posts/2016/08/check-buffer-offset-on-golang/</guid>
+      <description>데이터를 읽다보면 현재 오프셋(offset) 위치를 확인해야 할 때가 있기 마련이다. 하지만 Go 언어는 다양한 인터페이스를 통해 값을 읽어오기 때문에 내부에 있는 오프셋을 확인하기 어렵다. 이때는 io.Seeker 인터페이스에 구현된 Seek 함수를 통해 현재 오프셋을 확인가능하다.
+import ( &amp;#34;fmt&amp;#34; &amp;#34;os&amp;#34; ) func main() { f, err := os.Open(&amp;#34;SampleFile....&amp;#34;) if err != nil { panic(err) } d := make([]byte, 16) _, err = f.Read(d) if err != nil { panic(err) } offset, err := f.</description>
+    </item>
+    
+  </channel>
+</rss>

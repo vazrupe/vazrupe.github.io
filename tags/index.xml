@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on CodeFIct</title>
+    <link>https://codefict.dev/tags/</link>
+    <description>Recent content in Tags on CodeFIct</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>kr-ko</language>
+    <lastBuildDate>Sat, 20 Oct 2018 18:00:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://codefict.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>csharp</title>
+      <link>https://codefict.dev/tags/csharp/</link>
+      <pubDate>Sat, 20 Oct 2018 18:00:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/tags/csharp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>performance</title>
+      <link>https://codefict.dev/tags/performance/</link>
+      <pubDate>Sat, 20 Oct 2018 18:00:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/tags/performance/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://codefict.dev/tags/python/</link>
+      <pubDate>Fri, 03 Mar 2017 20:35:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web</title>
+      <link>https://codefict.dev/tags/web/</link>
+      <pubDate>Wed, 08 Feb 2017 20:10:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/tags/web/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>flask</title>
+      <link>https://codefict.dev/tags/flask/</link>
+      <pubDate>Tue, 24 Jan 2017 00:21:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/tags/flask/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ci</title>
+      <link>https://codefict.dev/tags/ci/</link>
+      <pubDate>Sat, 01 Oct 2016 18:39:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/tags/ci/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>github</title>
+      <link>https://codefict.dev/tags/github/</link>
+      <pubDate>Sat, 01 Oct 2016 18:39:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/tags/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jenkins</title>
+      <link>https://codefict.dev/tags/jenkins/</link>
+      <pubDate>Sat, 01 Oct 2016 18:39:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/tags/jenkins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go</title>
+      <link>https://codefict.dev/tags/go/</link>
+      <pubDate>Fri, 05 Aug 2016 18:48:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hive</title>
+      <link>https://codefict.dev/tags/hive/</link>
+      <pubDate>Wed, 20 Jul 2016 11:41:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/tags/hive/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>java</title>
+      <link>https://codefict.dev/tags/java/</link>
+      <pubDate>Wed, 20 Jul 2016 11:41:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jdbc</title>
+      <link>https://codefict.dev/tags/jdbc/</link>
+      <pubDate>Wed, 20 Jul 2016 11:41:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/tags/jdbc/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

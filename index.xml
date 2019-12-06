@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CodeFIct</title>
+    <link>https://codefict.dev/</link>
+    <description>Recent content on CodeFIct</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>kr-ko</language>
+    <lastBuildDate>Sat, 20 Oct 2018 18:00:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://codefict.dev/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>C# 함수와 P/Invoke 성능 비교</title>
+      <link>https://codefict.dev/posts/2018/10/csharp-functions-performance/</link>
+      <pubDate>Sat, 20 Oct 2018 18:00:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/posts/2018/10/csharp-functions-performance/</guid>
+      <description>평소에 개발할 때 Python, Go 혹은 C#을 사용하는 편인데, 셋 모두 일반적으로 C나 C++보다 느리다1. 그래서 &amp;lsquo;만약 성능이 필요하다면 C로 짠 다음 가져다 쓰면 되겠지&#39;라고 생각해왔고, 여태까지는 크게 성능 문제를 느낀 적은 없었다.
+요즘 C#만으로는 성능이 부족한 것을 느낄 때가 있는데, 그럴 때마다 &amp;lsquo;C#에서 P/Invoke로 C 함수를 사용하면 성능 향상이 얼마나 될까?&amp;rsquo; 하는 궁금증이 있었다. 그래서 찾아보니 Code Project에 C#에서 3가지 방법으로 C 함수를 사용했을 때의 성능을 테스트해둔 글이 있었다.</description>
+    </item>
+    
+    <item>
+      <title>default와 new() 제약조건 사용하기</title>
+      <link>https://codefict.dev/posts/2017/08/using-default-and-new-keyword/</link>
+      <pubDate>Mon, 14 Aug 2017 15:50:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/posts/2017/08/using-default-and-new-keyword/</guid>
+      <description>최근 C# 코드를 작성할 일이 많아졌습니다. 가끔 generic 함수를 작성하곤 하는데, 기본 값을 생성해줘야 할 때가 있었습니다.
+이 때 사용하게 되는 키워드가 new와 default입니다. 이 글에서는 class, struct 그리고 enum을 사용할 때 어떤 점을 주의해야 하는지 살펴보도록 하겠습니다.
+new와 default new는 generic 함수의 제약 조건입니다. 해당 제약 조건을 걸면 generic 함수 내에서 new T()와 같은 코드를 사용할 수 있습니다. 이 제약 조건을 걸었을 경우 struct와 enum은 항상 사용가능하고, class는 구현에 따라 달라지게 됩니다.</description>
+    </item>
+    
+    <item>
+      <title>Python3에서 함수의 인자 다루기</title>
+      <link>https://codefict.dev/posts/2017/03/python-function-parameters/</link>
+      <pubDate>Fri, 03 Mar 2017 20:35:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/posts/2017/03/python-function-parameters/</guid>
+      <description>flask를 써보며 Variable Rules가 어떻게 구현되는지 궁금했었는데, 어제 전문가를 위한 파이썬(루시아누 하말류 저, 강권학 역, 원제: Fluent Python)을 읽고 어떤 방법으로 구현될 수 있는지 알 게 되었습니다.
+python에는 inspect라는 라이브러리가 제공된다. 이 라이브러리의 signature를 이용해 어떤 인자가 있는지, 그 인자가 어떤 속성을 가지는지 알 수 있습니다.
+from inspect import signature def sample(a, b=10, *args, c=None, **kwargs): pass sig = signature(sample) for param in sig.parameters.values(): pass signature의 프로퍼티 parameters는 각 파라미터가 param_name: inspect.</description>
+    </item>
+    
+    <item>
+      <title>쿠키와 세션의 차이</title>
+      <link>https://codefict.dev/posts/2017/02/cookie-and-session/</link>
+      <pubDate>Wed, 08 Feb 2017 20:10:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/posts/2017/02/cookie-and-session/</guid>
+      <description>HTTP/1.1 프로토콜은 기본적으로 상태를 가지지 않습니다(stateless). 하지만 로그인 정보, 장바구니 등과 같이 정보를 저장해 놓는(stateful) 웹 페이지는 많이 존재합니다.
+이런 정보를 저장하기 위해 클라이언트와 서버는 쿠키(Cookie)와 세션(Session)을 이용해 사용자를 구분하고 정보를 저장하는데, 조금 헷깔리기도 합니다.
+이 글에서는 웹에서 사용자의 상태를 관리해주는, 쿠키와 세션의 차이를 확인하도록 하겠습니다.
+쿠키(Cookie)에 대해서 쿠키는 웹 브라우저가 사용자의 PC에 쿠키를 텍스트 형식으로 저장해놓고, 도메인에 맞는 서버에 보내주게 됩니다. 서버는 웹 브라우저(사용자)가 전송한 쿠키를 읽어서 페이지를 렌더링하고, 사용자에 맞는 페이지를 보여줍니다.</description>
+    </item>
+    
+    <item>
+      <title>Flask를 reverse proxy 서버로 사용하기</title>
+      <link>https://codefict.dev/posts/2017/01/flask-reverse-proxy/</link>
+      <pubDate>Tue, 24 Jan 2017 00:21:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/posts/2017/01/flask-reverse-proxy/</guid>
+      <description>지금 만들고 있는 개인 프로젝트는 flask와 angular를 사용한 SPA 기반 프로젝트입니다.
+프로젝트를 만들면서 SPA의 ajax 요청을 처리할 데이터가 필요했습니다. angular에서 service라는 기능으로 샘플 데이터를 넣어 테스트해볼 수 있지만, flask에서 전송되는 데이터를 직접 읽고 싶어서 proxy로 사용해 둘을 같이 동작시킬 방법이 없나 찾아보았고(물론 service로 구현하는게 테스트에 좋습니다), stackoverflow에서 requests를 이용해 구현하는 방법을 찾을 수 있었습니다.
+제가 적용한 코드는 아래와 같습니다. stackoverflow와는 달리 replace로 포트만 변경합니다. flask의 기본 포트인 5000을 ng serve의 기본 포트인 4200으로 바꿔서 요청을 전송해줍니다.</description>
+    </item>
+    
+    <item>
+      <title>Jenkins에 GitHub Hook 적용하기</title>
+      <link>https://codefict.dev/posts/2016/10/jenkins-github-hook/</link>
+      <pubDate>Sat, 01 Oct 2016 18:39:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/posts/2016/10/jenkins-github-hook/</guid>
+      <description>최근 Tomcat 프로젝트를 하며, Jenkins를 이용한 auto-deployment를 해봤습니다. 이 경험을 바탕으로 Jenkins에 GitHub Hook를 적용하는 방법을 적어보고자 합니다.
+먼저 Jenkins Job에서 사용할 ssh키를 생성합니다. (Generating a new SSH key and adding it to the ssh-agent) 생성할 때 passphrase를 묻는데 ssh키에 패스워드를 거는 겁니다. 필요하다 생각된다면, 적어도 무방합니다. 생성이 완료되면 pub가 붙은 파일과 아닌 파일이 있습니다. pub가 붙은 파일을 GtiHub에 등록하고 아닌 파일을 Jenkins에 등록하게 됩니다.
+이제 Jenkins로 가서 Git과 GitHub 플러그인을 설치해줍니다.</description>
+    </item>
+    
+    <item>
+      <title>Go에서 io.Seeker 인터페이스로 버퍼 오프셋(offset) 확인하기</title>
+      <link>https://codefict.dev/posts/2016/08/check-buffer-offset-on-golang/</link>
+      <pubDate>Fri, 05 Aug 2016 18:48:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/posts/2016/08/check-buffer-offset-on-golang/</guid>
+      <description>데이터를 읽다보면 현재 오프셋(offset) 위치를 확인해야 할 때가 있기 마련이다. 하지만 Go 언어는 다양한 인터페이스를 통해 값을 읽어오기 때문에 내부에 있는 오프셋을 확인하기 어렵다. 이때는 io.Seeker 인터페이스에 구현된 Seek 함수를 통해 현재 오프셋을 확인가능하다.
+import ( &amp;#34;fmt&amp;#34; &amp;#34;os&amp;#34; ) func main() { f, err := os.Open(&amp;#34;SampleFile....&amp;#34;) if err != nil { panic(err) } d := make([]byte, 16) _, err = f.Read(d) if err != nil { panic(err) } offset, err := f.</description>
+    </item>
+    
+    <item>
+      <title>Eclipse에서 JDBC로 Hive 연동하기</title>
+      <link>https://codefict.dev/posts/2016/07/connect-hive-with-jdbc-on-eclipse/</link>
+      <pubDate>Wed, 20 Jul 2016 11:41:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/posts/2016/07/connect-hive-with-jdbc-on-eclipse/</guid>
+      <description>Remote Hive 서비스와 연동하여 개발하기 위한 기본 설정과 연동을 살펴보고자 한다. 설치된 환경은 다음과 같다.
+ Apache Hadoop 2.7.2 Apache Hive 2.1.0  둘 모두 사용자(vagrant) 홈에 설치되어 있다. 접속은 vagrant:vagrant로 하며, 호스트은 hadoop이다. Hive로 연동하기 위한 Hadoop의 설정은 다음과 같다.
+- core-site.xml
+ hadoop.proxyuser.{username}.hosts = * hadoop.proxyuser.{username}.groups = *  접속할 때 사용할 사용자명을 {username}에 넣어주면 된다. 이는 접속해서 파일을 수정할 때 권한이 없는 문제를 해결하기 위한 설정이다. Hive는 따로 설정을 하지 않아도 된다.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>csharp on CodeFIct</title>
+    <link>https://codefict.dev/tags/csharp/</link>
+    <description>Recent content in csharp on CodeFIct</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>kr-ko</language>
+    <lastBuildDate>Sat, 20 Oct 2018 18:00:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://codefict.dev/tags/csharp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>C# 함수와 P/Invoke 성능 비교</title>
+      <link>https://codefict.dev/posts/2018/10/csharp-functions-performance/</link>
+      <pubDate>Sat, 20 Oct 2018 18:00:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/posts/2018/10/csharp-functions-performance/</guid>
+      <description>평소에 개발할 때 Python, Go 혹은 C#을 사용하는 편인데, 셋 모두 일반적으로 C나 C++보다 느리다1. 그래서 &amp;lsquo;만약 성능이 필요하다면 C로 짠 다음 가져다 쓰면 되겠지&#39;라고 생각해왔고, 여태까지는 크게 성능 문제를 느낀 적은 없었다.
+요즘 C#만으로는 성능이 부족한 것을 느낄 때가 있는데, 그럴 때마다 &amp;lsquo;C#에서 P/Invoke로 C 함수를 사용하면 성능 향상이 얼마나 될까?&amp;rsquo; 하는 궁금증이 있었다. 그래서 찾아보니 Code Project에 C#에서 3가지 방법으로 C 함수를 사용했을 때의 성능을 테스트해둔 글이 있었다.</description>
+    </item>
+    
+    <item>
+      <title>default와 new() 제약조건 사용하기</title>
+      <link>https://codefict.dev/posts/2017/08/using-default-and-new-keyword/</link>
+      <pubDate>Mon, 14 Aug 2017 15:50:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/posts/2017/08/using-default-and-new-keyword/</guid>
+      <description>최근 C# 코드를 작성할 일이 많아졌습니다. 가끔 generic 함수를 작성하곤 하는데, 기본 값을 생성해줘야 할 때가 있었습니다.
+이 때 사용하게 되는 키워드가 new와 default입니다. 이 글에서는 class, struct 그리고 enum을 사용할 때 어떤 점을 주의해야 하는지 살펴보도록 하겠습니다.
+new와 default new는 generic 함수의 제약 조건입니다. 해당 제약 조건을 걸면 generic 함수 내에서 new T()와 같은 코드를 사용할 수 있습니다. 이 제약 조건을 걸었을 경우 struct와 enum은 항상 사용가능하고, class는 구현에 따라 달라지게 됩니다.</description>
+    </item>
+    
+  </channel>
+</rss>
