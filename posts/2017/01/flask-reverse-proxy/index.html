@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.61.0-DEV" />
+<meta name="generator" content="Hugo 0.59.1" />
 
     
     
@@ -213,22 +213,25 @@
   
   <div class="post">
     <p>지금 만들고 있는 개인 프로젝트는 <a href="http://flask.pocoo.org/">flask</a>와 <a href="https://angular.io/">angular</a>를 사용한 SPA 기반 프로젝트입니다.</p>
+
 <p>프로젝트를 만들면서 SPA의 ajax 요청을 처리할 데이터가 필요했습니다. angular에서 <a href="https://angular.io/docs/ts/latest/tutorial/toh-pt4.html">service</a>라는 기능으로 샘플 데이터를 넣어 테스트해볼 수 있지만, flask에서 전송되는 데이터를 직접 읽고 싶어서 proxy로 사용해 둘을 같이 동작시킬 방법이 없나 찾아보았고(물론 service로 구현하는게 테스트에 좋습니다), stackoverflow에서 <a href="http://docs.python-requests.org/en/master/">requests</a>를 이용해 구현하는 <a href="http://stackoverflow.com/a/36601467/6564250">방법</a>을 찾을 수 있었습니다.</p>
+
 <p>제가 적용한 코드는 아래와 같습니다. stackoverflow와는 달리 replace로 포트만 변경합니다. flask의 기본 포트인 5000을 <code>ng serve</code>의 기본 포트인 4200으로 바꿔서 요청을 전송해줍니다.</p>
+
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> requests
 <span style="color:#f92672">from</span> flask <span style="color:#f92672">import</span> request, Response
 
-<span style="color:#a6e22e">@web.route</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">/</span><span style="color:#e6db74">&#39;</span>, defaults<span style="color:#f92672">=</span>{<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">path</span><span style="color:#e6db74">&#39;</span>: <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">index.html</span><span style="color:#e6db74">&#39;</span>})
-<span style="color:#a6e22e">@web.route</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">/&lt;path:path&gt;</span><span style="color:#e6db74">&#39;</span>)
+<span style="color:#a6e22e">@web.route</span>(<span style="color:#e6db74">&#39;/&#39;</span>, defaults<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;path&#39;</span>: <span style="color:#e6db74">&#39;index.html&#39;</span>})
+<span style="color:#a6e22e">@web.route</span>(<span style="color:#e6db74">&#39;/&lt;path:path&gt;&#39;</span>)
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">spa_apps</span>(path):
     resp <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>request(
         method<span style="color:#f92672">=</span>request<span style="color:#f92672">.</span>method,
-        url<span style="color:#f92672">=</span>request<span style="color:#f92672">.</span>url<span style="color:#f92672">.</span>replace(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">:5000</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">:4200</span><span style="color:#e6db74">&#39;</span>),
-        headers<span style="color:#f92672">=</span>{key: value <span style="color:#66d9ef">for</span> (key, value) <span style="color:#f92672">in</span> request<span style="color:#f92672">.</span>headers <span style="color:#66d9ef">if</span> key <span style="color:#f92672">!=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Host</span><span style="color:#e6db74">&#39;</span>},
+        url<span style="color:#f92672">=</span>request<span style="color:#f92672">.</span>url<span style="color:#f92672">.</span>replace(<span style="color:#e6db74">&#39;:5000&#39;</span>, <span style="color:#e6db74">&#39;:4200&#39;</span>),
+        headers<span style="color:#f92672">=</span>{key: value <span style="color:#66d9ef">for</span> (key, value) <span style="color:#f92672">in</span> request<span style="color:#f92672">.</span>headers <span style="color:#66d9ef">if</span> key <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#39;Host&#39;</span>},
         data<span style="color:#f92672">=</span>request<span style="color:#f92672">.</span>get_data(),
         cookies<span style="color:#f92672">=</span>request<span style="color:#f92672">.</span>cookies,
         allow_redirects<span style="color:#f92672">=</span>False)
-    excluded_headers <span style="color:#f92672">=</span> [<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">content-encoding</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">content-length</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">transfer-encoding</span><span style="color:#e6db74">&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">connection</span><span style="color:#e6db74">&#39;</span>]
+    excluded_headers <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;content-encoding&#39;</span>, <span style="color:#e6db74">&#39;content-length&#39;</span>, <span style="color:#e6db74">&#39;transfer-encoding&#39;</span>, <span style="color:#e6db74">&#39;connection&#39;</span>]
     headers <span style="color:#f92672">=</span> [(name, value) <span style="color:#66d9ef">for</span> (name, value) <span style="color:#f92672">in</span> resp<span style="color:#f92672">.</span>raw<span style="color:#f92672">.</span>headers<span style="color:#f92672">.</span>items()
                <span style="color:#66d9ef">if</span> name<span style="color:#f92672">.</span>lower() <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> excluded_headers]
     response <span style="color:#f92672">=</span> Response(resp<span style="color:#f92672">.</span>content, resp<span style="color:#f92672">.</span>status_code, headers)
