@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.60.1" />
 
     
     
@@ -211,38 +211,31 @@ from inspect import signature def sample(a, b=10, *args, c=None, **kwargs): pass
   <div class="post">
     <p>flask를 써보며 <a href="http://flask.pocoo.org/docs/0.12/quickstart/#variable-rules">Variable Rules</a>가 어떻게 구현되는지 궁금했었는데,
 어제 <a href="http://www.aladin.co.kr/shop/wproduct.aspx?ItemId=88728476">전문가를 위한 파이썬</a>(루시아누 하말류 저, 강권학 역, 원제: <a href="https://www.amazon.com/Fluent-Python-Concise-Effective-Programming/dp/1491946008/ref=sr_1_1?ie=UTF8&amp;qid=1488470572&amp;sr=8-1&amp;keywords=Fluent+Python">Fluent Python</a>)을 읽고 어떤 방법으로 구현될 수 있는지 알 게 되었습니다.</p>
-
 <p>python에는 <code>inspect</code>라는 라이브러리가 제공된다. 이 라이브러리의 <code>signature</code>를 이용해 어떤 인자가 있는지, 그 인자가 어떤 속성을 가지는지 알 수 있습니다.</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> inspect <span style="color:#f92672">import</span> signature
 
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sample</span>(a, b<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, <span style="color:#f92672">*</span>args, c<span style="color:#f92672">=</span>None, <span style="color:#f92672">**</span>kwargs):
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sample</span>(a, b<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, <span style="color:#f92672">*</span>args, c<span style="color:#f92672">=</span>None, <span style="color:#f92672">*</span><span style="color:#f92672">*</span>kwargs):
     <span style="color:#66d9ef">pass</span>
 
 sig <span style="color:#f92672">=</span> signature(sample)
 <span style="color:#66d9ef">for</span> param <span style="color:#f92672">in</span> sig<span style="color:#f92672">.</span>parameters<span style="color:#f92672">.</span>values():
     <span style="color:#66d9ef">pass</span></code></pre></div>
-
 <p><code>signature</code>의 프로퍼티 <code>parameters</code>는 각 파라미터가 <code>param_name: inspect.Parameter</code> 형식으로 들어있는 <a href="https://docs.python.org/3/library/collections.html#collections.OrderedDict">OrderedDict</a> 객체다.
 파라미터의 이름은 <a href="https://docs.python.org/3/library/inspect.html#inspect.Parameter">inspect.Parameter</a> 객체를 통해 확인할 수 있으니 오브젝트만 불러와서 정보를 확인하면 됩니다.</p>
-
 <p>inspect.Parameter에서 확인해야할 프로퍼티는 <code>name</code>, <code>default</code> 그리고 <code>kind</code>입니다.</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> inspect <span style="color:#f92672">import</span> signature
 
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sample</span>(a, b<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, <span style="color:#f92672">*</span>args, c<span style="color:#f92672">=</span>None, <span style="color:#f92672">**</span>kwargs):
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sample</span>(a, b<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, <span style="color:#f92672">*</span>args, c<span style="color:#f92672">=</span>None, <span style="color:#f92672">*</span><span style="color:#f92672">*</span>kwargs):
     <span style="color:#66d9ef">pass</span>
 
 sig <span style="color:#f92672">=</span> signature(sample)
 <span style="color:#66d9ef">for</span> param <span style="color:#f92672">in</span> sig<span style="color:#f92672">.</span>parameters<span style="color:#f92672">.</span>values():
     <span style="color:#66d9ef">print</span>(param<span style="color:#f92672">.</span>name)
-    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39; -&#39;</span>, param<span style="color:#f92672">.</span>default)
-    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39; -&#39;</span>, param<span style="color:#f92672">.</span>kind)</code></pre></div>
-
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> -</span><span style="color:#e6db74">&#39;</span>, param<span style="color:#f92672">.</span>default)
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> -</span><span style="color:#e6db74">&#39;</span>, param<span style="color:#f92672">.</span>kind)</code></pre></div>
 <p>위의 코드를 실행하면 결과는 아래와 같이 출력됩니다.</p>
-
 <pre><code>a
  - &lt;class 'inspect._empty'&gt;
  - POSITIONAL_OR_KEYWORD
@@ -258,34 +251,27 @@ c
 kwargs
  - &lt;class 'inspect._empty'&gt;
  - VAR_KEYWORD
-</code></pre>
-
-<p><code>name</code>과 <code>default</code>는 이름만으로도 용도가 짐작가듯이 인자의 이름과 기본값을 뜻합니다. 그런데 <code>sample</code> 함수의 경우 <code>a</code>, <code>*args</code>, <code>**args</code>는 기본값이 설정되지 않았습니다. 프로퍼티 값으로는 <code>inspect._empty</code>라는 결과가 나오는데 이를 통해 기본값이 설정되지 않은 것을 확인할 수 있습니다.
+</code></pre><p><code>name</code>과 <code>default</code>는 이름만으로도 용도가 짐작가듯이 인자의 이름과 기본값을 뜻합니다. 그런데 <code>sample</code> 함수의 경우 <code>a</code>, <code>*args</code>, <code>**args</code>는 기본값이 설정되지 않았습니다. 프로퍼티 값으로는 <code>inspect._empty</code>라는 결과가 나오는데 이를 통해 기본값이 설정되지 않은 것을 확인할 수 있습니다.
 이 값이 왜 <code>None</code>이 아닌지는 <code>c</code> 파라미터를 통해 볼 수 있습니다. 기본값으로는 <code>None</code>도 사용가능하기 때문에 따로 선언되어 있습니다.</p>
-
 <p>그럼 이 값이 <code>empty</code>인지는 어떻게 확인할까요? <code>inspect._empty</code>를 <code>import</code>해 확인해야 할까요?
 다행히 확인하기 쉽게 <code>inspect.Parameter</code>의 프로퍼티로 <code>empty</code>가 있습니다. 따라서 <code>param.default is param.empty</code>만으로 기본값이 있는지 없는지를 확인해 볼 수 있습니다.</p>
-
 <p>다음은 <code>kind</code>입니다. <code>kind</code>는 파라미터가 어떤 종류인지를 확인할 수 있습니다. 선언해 둔 <code>def sample(a, b=10, *args, c=None, **kwargs)</code>을 <code>*args</code>와 <code>**kwargs</code>를 볼 수 있습니다. 둘은 파이썬에서 지원하는 파라미터 관련 기능인데,
 인자명 앞에 <code>*</code>을 붙이면 <a href="https://docs.python.org/3/tutorial/controlflow.html#unpacking-argument-lists">키워드가 지정되지 않고 파라미터가 정의 되지 않은 인자</a>를 모두 가져올 수 있습니다.
 그리고 <code>**</code>를 붙이면 <a href="https://docs.python.org/3/tutorial/controlflow.html#keyword-arguments">키워드가 지정된 파라미터가 정의되지 않은 인자</a>를 가져올 수 있습니다. 말로는 이해가 쉽지 않으니 <code>sample</code> 함수를 조금 바꾼 뒤 확인 해보도록 하겠습니다.</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sample</span>(a, b<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, <span style="color:#f92672">*</span>args, c<span style="color:#f92672">=</span>None, <span style="color:#f92672">**</span>kwargs):
-<span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;a&#39;</span>, a)
-<span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;b&#39;</span>, b)
-<span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;c&#39;</span>, c)
-<span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;args&#39;</span>, args)
-<span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;kwargs&#39;</span>, kwargs)
-<span style="color:#f92672">...</span>
-<span style="color:#f92672">&gt;&gt;&gt;</span> sample(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, c<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, d<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>, e<span style="color:#f92672">=</span><span style="color:#ae81ff">7</span>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;</span><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sample</span>(a, b<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, <span style="color:#f92672">*</span>args, c<span style="color:#f92672">=</span>None, <span style="color:#f92672">*</span><span style="color:#f92672">*</span>kwargs):
+<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">a</span><span style="color:#e6db74">&#39;</span>, a)
+<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span>, b)
+<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">c</span><span style="color:#e6db74">&#39;</span>, c)
+<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">args</span><span style="color:#e6db74">&#39;</span>, args)
+<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">kwargs</span><span style="color:#e6db74">&#39;</span>, kwargs)
+<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>
+<span style="color:#f92672">&gt;&gt;</span><span style="color:#f92672">&gt;</span> sample(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, c<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, d<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>, e<span style="color:#f92672">=</span><span style="color:#ae81ff">7</span>)
 a <span style="color:#ae81ff">1</span>
 b <span style="color:#ae81ff">2</span>
 c <span style="color:#ae81ff">5</span>
 args (<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>)
-kwargs {<span style="color:#e6db74">&#39;e&#39;</span>: <span style="color:#ae81ff">7</span>, <span style="color:#e6db74">&#39;d&#39;</span>: <span style="color:#ae81ff">6</span>}</code></pre></div>
-
+kwargs {<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">e</span><span style="color:#e6db74">&#39;</span>: <span style="color:#ae81ff">7</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">d</span><span style="color:#e6db74">&#39;</span>: <span style="color:#ae81ff">6</span>}</code></pre></div>
 <p>이 결과를 위에서 본 <code>kind</code> 정보와 함께 보겠습니다.</p>
-
 <table>
 <thead>
 <tr>
@@ -294,48 +280,40 @@ kwargs {<span style="color:#e6db74">&#39;e&#39;</span>: <span style="color:#ae81
 <th>kind</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>a</td>
 <td>1</td>
 <td>POSITIONAL_OR_KEYWORD</td>
 </tr>
-
 <tr>
 <td>b</td>
 <td>2</td>
 <td>POSITIONAL_OR_KEYWORD</td>
 </tr>
-
 <tr>
 <td>c</td>
 <td>5</td>
 <td>KEYWORD_ONLY</td>
 </tr>
-
 <tr>
 <td>args</td>
 <td>(3, 4)</td>
 <td>VAR_POSITIONAL</td>
 </tr>
-
 <tr>
 <td>kwargs</td>
-<td>{&lsquo;e&rsquo;: 7, &rsquo;d&rsquo;: 6}</td>
+<td>{&lsquo;e&rsquo;: 7, &lsquo;d&rsquo;: 6}</td>
 <td>VAR_KEYWORD</td>
 </tr>
 </tbody>
 </table>
-
 <p><code>a</code>와 <code>b</code>는 1, 2가 순서대로 들어갔습니다.
 하지만 <code>c</code>는 값을 지정한 5가 들어갔는데, 앞에 <code>*args</code>를 선언해서 위치만으로는 입력이 되지 않기 때문입니다. 이러한 정보는 <code>kind</code>로 확인할 수 있습니다.
 <code>c</code>를 보면 <code>KEYWORD_ONLY</code>로 지정되어 있습니다. <code>a</code>와 <code>b</code>는 <code>POSITIONAL_OR_KEYWORD</code>인데 이걸로 확인할 수 있듯이 <code>c</code>는 키워드로만 인자를 쓸 수 있고, <code>a</code>와 <code>b</code>는 키워드를 지정하지 않아도 쓸 수 있음을 알 수 있습니다.
 <code>kind</code> 타입 목록은 <a href="https://docs.python.org/3/library/inspect.html#inspect.Parameter.kind">kind에 대한 설명</a>에서 확인할 수 있습니다.
 단, <code>POSITION_ONLY</code>는 아직 <a href="https://www.python.org/dev/peps/pep-0457/">논의중</a>입니다.</p>
-
 <p>위의 목록을 보면 <code>args</code>는 <code>VAR_POSITIONAL</code>가, <code>kwargs</code>는 <code>VAR_KEYWORD</code>로 되어있는 것을 볼 수 있습니다. 여기까지 확인했으면 간단한 데코레이터를 만들어 보겠습니다.</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> functools <span style="color:#f92672">import</span> wraps
 <span style="color:#f92672">from</span> inspect <span style="color:#f92672">import</span> signature
 
@@ -344,8 +322,8 @@ kwargs {<span style="color:#e6db74">&#39;e&#39;</span>: <span style="color:#ae81
     sig <span style="color:#f92672">=</span> signature(func)
     <span style="color:#66d9ef">for</span> param <span style="color:#f92672">in</span> sig<span style="color:#f92672">.</span>parameters<span style="color:#f92672">.</span>values():
         <span style="color:#66d9ef">print</span>(param<span style="color:#f92672">.</span>name)
-        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39; -&#39;</span>, param<span style="color:#f92672">.</span>default)
-        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39; -&#39;</span>, param<span style="color:#f92672">.</span>kind)
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> -</span><span style="color:#e6db74">&#39;</span>, param<span style="color:#f92672">.</span>default)
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> -</span><span style="color:#e6db74">&#39;</span>, param<span style="color:#f92672">.</span>kind)
 
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">safe_param</span>(func):
@@ -373,7 +351,7 @@ kwargs {<span style="color:#e6db74">&#39;e&#39;</span>: <span style="color:#ae81
         <span style="color:#66d9ef">return</span> None <span style="color:#66d9ef">if</span> original<span style="color:#f92672">.</span>default <span style="color:#f92672">is</span> original<span style="color:#f92672">.</span>empty <span style="color:#66d9ef">else</span> original<span style="color:#f92672">.</span>default
             
     <span style="color:#a6e22e">@wraps</span>(func)
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">wrap</span>(<span style="color:#f92672">*</span>args, <span style="color:#f92672">**</span>kwargs):
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">wrap</span>(<span style="color:#f92672">*</span>args, <span style="color:#f92672">*</span><span style="color:#f92672">*</span>kwargs):
         <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> ok_args:
             args <span style="color:#f92672">=</span> args[:len(list_params)]
         
@@ -393,85 +371,77 @@ kwargs {<span style="color:#e6db74">&#39;e&#39;</span>: <span style="color:#ae81
         <span style="color:#66d9ef">for</span> param <span style="color:#f92672">in</span> not_set_keyword_params:
             kwargs[param] <span style="color:#f92672">=</span> get_default_value(param)
         
-        <span style="color:#66d9ef">return</span> func(<span style="color:#f92672">*</span>args, <span style="color:#f92672">**</span>kwargs)
+        <span style="color:#66d9ef">return</span> func(<span style="color:#f92672">*</span>args, <span style="color:#f92672">*</span><span style="color:#f92672">*</span>kwargs)
     <span style="color:#66d9ef">return</span> wrap</code></pre></div>
-
 <p><code>param_info</code> 함수는 위에서 파라미터 정보를 볼 때 사용한 코드를 함수로 바꾼 겁니다. 아래의 <code>safe_param</code> 함수는 인자로 값을 넣지 않아도 자동으로 <code>None</code>으로 설정하고, 혹은 <code>*args</code>나 <code>**kwargs</code>가 없어도 너무 많이 넣거나 정의되지 않은 인자는 제외해주는 함수입니다.</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sample</span>(a, b, <span style="color:#f92672">*</span>args, c, <span style="color:#f92672">**</span>kwargs):
-<span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;a&#39;</span>, a)
-<span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;b&#39;</span>, b)
-<span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;c&#39;</span>, c)
-<span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;args&#39;</span>, args)
-<span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;kwargs&#39;</span>, kwargs)
-<span style="color:#f92672">...</span> 
-<span style="color:#f92672">&gt;&gt;&gt;</span> safe_sample <span style="color:#f92672">=</span> safe_param(sample)    
-<span style="color:#f92672">&gt;&gt;&gt;</span> param_info(sample)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;</span><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sample</span>(a, b, <span style="color:#f92672">*</span>args, c, <span style="color:#f92672">*</span><span style="color:#f92672">*</span>kwargs):
+<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">a</span><span style="color:#e6db74">&#39;</span>, a)
+<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span>, b)
+<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">c</span><span style="color:#e6db74">&#39;</span>, c)
+<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">args</span><span style="color:#e6db74">&#39;</span>, args)
+<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">kwargs</span><span style="color:#e6db74">&#39;</span>, kwargs)
+<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span> 
+<span style="color:#f92672">&gt;&gt;</span><span style="color:#f92672">&gt;</span> safe_sample <span style="color:#f92672">=</span> safe_param(sample)    
+<span style="color:#f92672">&gt;&gt;</span><span style="color:#f92672">&gt;</span> param_info(sample)
 a
- <span style="color:#f92672">-</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">inspect</span><span style="color:#f92672">.</span>_empty<span style="color:#e6db74">&#39;&gt;</span>
+ <span style="color:#f92672">-</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">inspect</span><span style="color:#f92672">.</span>_empty<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">&gt;</span>
  <span style="color:#f92672">-</span> POSITIONAL_OR_KEYWORD
 b
- <span style="color:#f92672">-</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">inspect</span><span style="color:#f92672">.</span>_empty<span style="color:#e6db74">&#39;&gt;</span>
+ <span style="color:#f92672">-</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">inspect</span><span style="color:#f92672">.</span>_empty<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">&gt;</span>
  <span style="color:#f92672">-</span> POSITIONAL_OR_KEYWORD
 args
- <span style="color:#f92672">-</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">inspect</span><span style="color:#f92672">.</span>_empty<span style="color:#e6db74">&#39;&gt;</span>
+ <span style="color:#f92672">-</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">inspect</span><span style="color:#f92672">.</span>_empty<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">&gt;</span>
  <span style="color:#f92672">-</span> VAR_POSITIONAL
 c
- <span style="color:#f92672">-</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">inspect</span><span style="color:#f92672">.</span>_empty<span style="color:#e6db74">&#39;&gt;</span>
+ <span style="color:#f92672">-</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">inspect</span><span style="color:#f92672">.</span>_empty<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">&gt;</span>
  <span style="color:#f92672">-</span> KEYWORD_ONLY
 kwargs
- <span style="color:#f92672">-</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">inspect</span><span style="color:#f92672">.</span>_empty<span style="color:#e6db74">&#39;&gt;</span>
+ <span style="color:#f92672">-</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">inspect</span><span style="color:#f92672">.</span>_empty<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">&gt;</span>
  <span style="color:#f92672">-</span> VAR_KEYWORD
-<span style="color:#f92672">&gt;&gt;&gt;</span> param_info(safe_sample)
+<span style="color:#f92672">&gt;&gt;</span><span style="color:#f92672">&gt;</span> param_info(safe_sample)
 a
- <span style="color:#f92672">-</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">inspect</span><span style="color:#f92672">.</span>_empty<span style="color:#e6db74">&#39;&gt;</span>
+ <span style="color:#f92672">-</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">inspect</span><span style="color:#f92672">.</span>_empty<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">&gt;</span>
  <span style="color:#f92672">-</span> POSITIONAL_OR_KEYWORD
 b
- <span style="color:#f92672">-</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">inspect</span><span style="color:#f92672">.</span>_empty<span style="color:#e6db74">&#39;&gt;</span>
+ <span style="color:#f92672">-</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">inspect</span><span style="color:#f92672">.</span>_empty<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">&gt;</span>
  <span style="color:#f92672">-</span> POSITIONAL_OR_KEYWORD
 args
- <span style="color:#f92672">-</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">inspect</span><span style="color:#f92672">.</span>_empty<span style="color:#e6db74">&#39;&gt;</span>
+ <span style="color:#f92672">-</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">inspect</span><span style="color:#f92672">.</span>_empty<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">&gt;</span>
  <span style="color:#f92672">-</span> VAR_POSITIONAL
 c
- <span style="color:#f92672">-</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">inspect</span><span style="color:#f92672">.</span>_empty<span style="color:#e6db74">&#39;&gt;</span>
+ <span style="color:#f92672">-</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">inspect</span><span style="color:#f92672">.</span>_empty<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">&gt;</span>
  <span style="color:#f92672">-</span> KEYWORD_ONLY
 kwargs
- <span style="color:#f92672">-</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">inspect</span><span style="color:#f92672">.</span>_empty<span style="color:#e6db74">&#39;&gt;</span>
+ <span style="color:#f92672">-</span> <span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">inspect</span><span style="color:#f92672">.</span>_empty<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">&gt;</span>
  <span style="color:#f92672">-</span> VAR_KEYWORD</code></pre></div>
-
 <p><code>safe_param</code>으로 데코레이팅 해도 <a href="https://docs.python.org/3/library/functools.html#functools.wraps">functools.wraps</a>를 사용했기 때문에 파라미터 정보는 그대로 추출 가능합니다. 잘 돌아가는지 확인해보겠습니다.</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> safe_sample(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>, d<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;</span><span style="color:#f92672">&gt;</span> safe_sample(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>, d<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
 a <span style="color:#ae81ff">1</span>
 b <span style="color:#ae81ff">2</span>
 c None
 args (<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>)
-kwargs {<span style="color:#e6db74">&#39;d&#39;</span>: <span style="color:#ae81ff">10</span>}
-<span style="color:#f92672">&gt;&gt;&gt;</span> sample(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>, d<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+kwargs {<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">d</span><span style="color:#e6db74">&#39;</span>: <span style="color:#ae81ff">10</span>}
+<span style="color:#f92672">&gt;&gt;</span><span style="color:#f92672">&gt;</span> sample(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>, d<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
 Traceback (most recent call last):
-  File <span style="color:#e6db74">&#34;&lt;stdin&gt;&#34;</span>, line <span style="color:#ae81ff">1</span>, <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>module<span style="color:#f92672">&gt;</span>
-<span style="color:#a6e22e">TypeError</span>: sample() missing <span style="color:#ae81ff">1</span> required keyword<span style="color:#f92672">-</span>only argument: <span style="color:#e6db74">&#39;c&#39;</span></code></pre></div>
-
+  File <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&lt;stdin&gt;</span><span style="color:#e6db74">&#34;</span>, line <span style="color:#ae81ff">1</span>, <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>module<span style="color:#f92672">&gt;</span>
+<span style="color:#a6e22e">TypeError</span>: sample() missing <span style="color:#ae81ff">1</span> required keyword<span style="color:#f92672">-</span>only argument: <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">c</span><span style="color:#e6db74">&#39;</span></code></pre></div>
 <p><code>safe_param</code>으로 데코레이팅한 함수는 문제 없이 작동합니다. <code>c</code>는 <code>KEYWORD_ONLY</code>라서 3이 아닌 기본 값 <code>None</code>이 설정되었습니다. 데코레이팅 하지 않은 원본 함수는 <code>c</code> 파라미터가 없어서 에러가 납니다. 위의 데코레이터가 잘 작동하는 것을 확인할 수 있습니다.</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sample2</span>(a, b, <span style="color:#f92672">*</span>, c):
-<span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;a&#39;</span>, a)
-<span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;b&#39;</span>, b)
-<span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;c&#39;</span>, c)
-<span style="color:#f92672">...</span>
-<span style="color:#f92672">&gt;&gt;&gt;</span> safe_sample2 <span style="color:#f92672">=</span> safe_param(sample2)
-<span style="color:#f92672">&gt;&gt;&gt;</span> 
-<span style="color:#f92672">&gt;&gt;&gt;</span> safe_sample2(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>, d<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">&gt;&gt;</span><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sample2</span>(a, b, <span style="color:#f92672">*</span>, c):
+<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">a</span><span style="color:#e6db74">&#39;</span>, a)
+<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span>, b)
+<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">c</span><span style="color:#e6db74">&#39;</span>, c)
+<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>
+<span style="color:#f92672">&gt;&gt;</span><span style="color:#f92672">&gt;</span> safe_sample2 <span style="color:#f92672">=</span> safe_param(sample2)
+<span style="color:#f92672">&gt;&gt;</span><span style="color:#f92672">&gt;</span> 
+<span style="color:#f92672">&gt;&gt;</span><span style="color:#f92672">&gt;</span> safe_sample2(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>, d<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
 a <span style="color:#ae81ff">1</span>
 b <span style="color:#ae81ff">2</span>
 c None
-<span style="color:#f92672">&gt;&gt;&gt;</span> sample2(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>, d<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+<span style="color:#f92672">&gt;&gt;</span><span style="color:#f92672">&gt;</span> sample2(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>, d<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
 Traceback (most recent call last):
-  File <span style="color:#e6db74">&#34;&lt;stdin&gt;&#34;</span>, line <span style="color:#ae81ff">1</span>, <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>module<span style="color:#f92672">&gt;</span>
-<span style="color:#a6e22e">TypeError</span>: sample2() got an unexpected keyword argument <span style="color:#e6db74">&#39;d&#39;</span></code></pre></div>
-
+  File <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&lt;stdin&gt;</span><span style="color:#e6db74">&#34;</span>, line <span style="color:#ae81ff">1</span>, <span style="color:#f92672">in</span> <span style="color:#f92672">&lt;</span>module<span style="color:#f92672">&gt;</span>
+<span style="color:#a6e22e">TypeError</span>: sample2() got an unexpected keyword argument <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">d</span><span style="color:#e6db74">&#39;</span></code></pre></div>
 <p>이번에는 조금 수정해서 <code>*args</code>와 <code>**kwargs</code>를 제외하고 함수를 작성해 봤습니다. <code>*args</code>와 <code>**kwargs</code>가 없어도 잘 동작하는 것을 확인할 수 있습니다. 조금 더 수정해서 기본값을 설정할 수 있는 데코레이터로 만들어 보겠습니다.</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">safe_param</span>(default<span style="color:#f92672">=</span>None):
     <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">deco</span>(func):
         ok_args <span style="color:#f92672">=</span> False
@@ -498,7 +468,7 @@ Traceback (most recent call last):
             <span style="color:#66d9ef">return</span> default <span style="color:#66d9ef">if</span> original<span style="color:#f92672">.</span>default <span style="color:#f92672">is</span> original<span style="color:#f92672">.</span>empty <span style="color:#66d9ef">else</span> original<span style="color:#f92672">.</span>default
 
         <span style="color:#a6e22e">@wraps</span>(func)
-        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">wrap</span>(<span style="color:#f92672">*</span>args, <span style="color:#f92672">**</span>kwargs):
+        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">wrap</span>(<span style="color:#f92672">*</span>args, <span style="color:#f92672">*</span><span style="color:#f92672">*</span>kwargs):
             <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> ok_args:
                 args <span style="color:#f92672">=</span> args[:len(list_params)]
 
@@ -518,27 +488,25 @@ Traceback (most recent call last):
             <span style="color:#66d9ef">for</span> param <span style="color:#f92672">in</span> not_set_keyword_params:
                 kwargs[param] <span style="color:#f92672">=</span> get_default_value(param)
 
-            <span style="color:#66d9ef">return</span> func(<span style="color:#f92672">*</span>args, <span style="color:#f92672">**</span>kwargs)
+            <span style="color:#66d9ef">return</span> func(<span style="color:#f92672">*</span>args, <span style="color:#f92672">*</span><span style="color:#f92672">*</span>kwargs)
         <span style="color:#66d9ef">return</span> wrap
     <span style="color:#66d9ef">return</span> deco
 
-<span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#a6e22e">@safe_param</span>(<span style="color:#e6db74">&#39;is default&#39;</span>)
-<span style="color:#f92672">...</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sample3</span>(a, b, <span style="color:#f92672">*</span>args, c, <span style="color:#f92672">**</span>kwargs):
-<span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;a&#39;</span>, a)
-<span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;b&#39;</span>, b)
-<span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;c&#39;</span>, c)
-<span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;args&#39;</span>, args)
-<span style="color:#f92672">...</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;kwargs&#39;</span>, kwargs)
-<span style="color:#f92672">...</span> 
-<span style="color:#f92672">&gt;&gt;&gt;</span> sample3(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>, d<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+<span style="color:#f92672">&gt;&gt;</span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">@safe_param</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">is default</span><span style="color:#e6db74">&#39;</span>)
+<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sample3</span>(a, b, <span style="color:#f92672">*</span>args, c, <span style="color:#f92672">*</span><span style="color:#f92672">*</span>kwargs):
+<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">a</span><span style="color:#e6db74">&#39;</span>, a)
+<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;</span>, b)
+<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">c</span><span style="color:#e6db74">&#39;</span>, c)
+<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">args</span><span style="color:#e6db74">&#39;</span>, args)
+<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>     <span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">kwargs</span><span style="color:#e6db74">&#39;</span>, kwargs)
+<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span> 
+<span style="color:#f92672">&gt;&gt;</span><span style="color:#f92672">&gt;</span> sample3(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>, d<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
 a <span style="color:#ae81ff">1</span>
 b <span style="color:#ae81ff">2</span>
 c <span style="color:#f92672">is</span> default
 args (<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>)
-kwargs {<span style="color:#e6db74">&#39;d&#39;</span>: <span style="color:#ae81ff">10</span>}</code></pre></div>
-
+kwargs {<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">d</span><span style="color:#e6db74">&#39;</span>: <span style="color:#ae81ff">10</span>}</code></pre></div>
 <p>잘 작동하는 것을 확인할 수 있습니다. 이로써 원하는 <code>inspect.signature</code>로 함수의 파라미터를 읽어 원하는 방식으로 처리해 볼 수 있었습니다.</p>
-
 <p>위의 코드들은 <a href="https://github.com/vazrupe/python-inspect-signature-sample">Github 저장소</a>에서 확인할 수 있고, <a href="https://en.wikipedia.org/wiki/MIT_License">MIT License</a>로 사용 가능합니다.</p>
 
   </div>

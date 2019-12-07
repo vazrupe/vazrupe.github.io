@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.60.1" />
 
     
     
@@ -210,7 +210,6 @@ import ( &#34;fmt&#34; &#34;os&#34; ) func main() { f, err := os.Open(&#34;Sampl
     <p>데이터를 읽다보면 현재 오프셋(offset) 위치를 확인해야 할 때가 있기 마련이다.
 하지만 Go 언어는 다양한 인터페이스를 통해 값을 읽어오기 때문에 내부에 있는 오프셋을 확인하기 어렵다.
 이때는 io.Seeker 인터페이스에 구현된 Seek 함수를 통해 현재 오프셋을 확인가능하다.</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">import</span> (
     <span style="color:#e6db74">&#34;fmt&#34;</span>
     <span style="color:#e6db74">&#34;os&#34;</span>
