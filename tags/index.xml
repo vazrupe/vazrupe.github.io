@@ -6,10 +6,28 @@
     <description>Recent content in Tags on CodeFIct</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr-ko</language>
-    <lastBuildDate>Sat, 20 Oct 2018 18:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 08 Dec 2019 16:40:00 +0900</lastBuildDate>
     
 	<atom:link href="https://codefict.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>github</title>
+      <link>https://codefict.dev/tags/github/</link>
+      <pubDate>Sun, 08 Dec 2019 16:40:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/tags/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://codefict.dev/tags/hugo/</link>
+      <pubDate>Sun, 08 Dec 2019 16:40:00 +0900</pubDate>
+      
+      <guid>https://codefict.dev/tags/hugo/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>csharp</title>
@@ -62,15 +80,6 @@
       <pubDate>Sat, 01 Oct 2016 18:39:00 +0900</pubDate>
       
       <guid>https://codefict.dev/tags/ci/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>github</title>
-      <link>https://codefict.dev/tags/github/</link>
-      <pubDate>Sat, 01 Oct 2016 18:39:00 +0900</pubDate>
-      
-      <guid>https://codefict.dev/tags/github/</guid>
       <description></description>
     </item>
     

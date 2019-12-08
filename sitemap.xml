@@ -3,17 +3,47 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://codefict.dev/posts/2018/10/csharp-functions-performance/</loc>
-    <lastmod>2018-10-20T18:00:00+09:00</lastmod>
+    <loc>https://codefict.dev/categories/blog/</loc>
+    <lastmod>2019-12-08T16:40:00+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://codefict.dev/categories/</loc>
-    <lastmod>2018-10-20T18:00:00+09:00</lastmod>
+    <lastmod>2019-12-08T16:40:00+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://codefict.dev/</loc>
+    <lastmod>2019-12-08T16:40:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codefict.dev/tags/github/</loc>
+    <lastmod>2019-12-08T16:40:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codefict.dev/posts/2019/12/hugo-github-actions/</loc>
+    <lastmod>2019-12-08T16:40:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codefict.dev/tags/hugo/</loc>
+    <lastmod>2019-12-08T16:40:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codefict.dev/posts/</loc>
+    <lastmod>2019-12-08T16:40:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codefict.dev/tags/</loc>
+    <lastmod>2019-12-08T16:40:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://codefict.dev/posts/2018/10/csharp-functions-performance/</loc>
     <lastmod>2018-10-20T18:00:00+09:00</lastmod>
   </url>
   
@@ -29,16 +59,6 @@
   
   <url>
     <loc>https://codefict.dev/tags/performance/</loc>
-    <lastmod>2018-10-20T18:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://codefict.dev/posts/</loc>
-    <lastmod>2018-10-20T18:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://codefict.dev/tags/</loc>
     <lastmod>2018-10-20T18:00:00+09:00</lastmod>
   </url>
   
@@ -79,11 +99,6 @@
   
   <url>
     <loc>https://codefict.dev/tags/ci/</loc>
-    <lastmod>2016-10-01T18:39:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://codefict.dev/tags/github/</loc>
     <lastmod>2016-10-01T18:39:00+09:00</lastmod>
   </url>
   
