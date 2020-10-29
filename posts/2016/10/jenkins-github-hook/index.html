@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.60.1" />
+<meta name="generator" content="Hugo 0.76.5" />
 
     
     
@@ -151,6 +151,7 @@
 	
 	
 	
+	
 	<a href="mailto:vazrupe@naver.com" rel="me"><i class="fas fa-at fa-lg" aria-hidden="true"></i></a>
 	
 </section>
@@ -232,13 +233,13 @@ ssh 키를 생성할 때 Passphrase를 입력했다면 저기에 입력하고 OK
 <p><img src="img/06.PNG" alt=""></p>
 <p>GitHub project에 체크하고 저장소 경로를 입력해줍니다.</p>
 <p><img src="img/07.PNG" alt=""></p>
-<p>소스 관리에는 Git을 체크하고 경로는 <a href="mailto:%60git@github.com">`git@github.com</a>:닉네임/저장소이름`을 넣어줍니다. Credentials은 조금 전 저장한 SSH로 지정해줍니다</p>
+<p>소스 관리에는 Git을 체크하고 경로는 <code>git@github.com:닉네임/저장소이름</code>을 넣어줍니다. Credentials은 조금 전 저장한 SSH로 지정해줍니다</p>
 <p><img src="img/08.PNG" alt="">
 <img src="img/09.PNG" alt="">
 <img src="img/10.PNG" alt=""></p>
 <p>이제 GitHub로 가서 SSH키를 등록해줍니다. 아까 생성한 키중 pub가 붙은 키를 저장소의 Deploy keys에 등록하면 됩니다.</p>
 <p><img src="img/11.PNG" alt=""></p>
-<p>키가 정상적으로 등록되었는지는 ssh -i private-key <a href="mailto:git@github.com">git@github.com</a>를 입력하면 확인할 수 있습니다. &lsquo;Hi 저장소명'을 출력하여 정상적으로 출력되었다고 말해줍니다.</p>
+<p>키가 정상적으로 등록되었는지는 ssh -i private-key <a href="mailto:git@github.com">git@github.com</a>를 입력하면 확인할 수 있습니다. &lsquo;Hi 저장소명&rsquo;을 출력하여 정상적으로 출력되었다고 말해줍니다.</p>
 <p><img src="img/12.PNG" alt=""></p>
 <p>이제 Hook 서비스를 등록합니다. Intergrations &amp; services에서 Add service를 누르고 Jenkins (GitHub plugin)을 선택합니다.</p>
 <p><img src="img/13.PNG" alt=""></p>
@@ -314,12 +315,11 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.11.2/js/all.js" integrity="sha384-b3ua1l97aVGAPEIe48b4TC60WUQbQaGi2jqAWM90y0OZXZeyaTCWtBTKtjW2GXG1" crossorigin="anonymous"></script>
 
 
     
-    
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
             
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/go.min.js"></script>
@@ -329,7 +329,6 @@ if (!doNotTrack) {
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/cs.min.js"></script>
             
         
-    
     <script type="text/javascript">
         
         hljs.configure({languages: ["go, rust, cs"]});
@@ -337,7 +336,6 @@ if (!doNotTrack) {
         hljs.initHighlightingOnLoad();
     </script>
     
-
 
 
 

@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.60.1" />
+<meta name="generator" content="Hugo 0.76.5" />
 
     
     
@@ -153,6 +153,7 @@
 	
 	
 	
+	
 	<a href="mailto:vazrupe@naver.com" rel="me"><i class="fas fa-at fa-lg" aria-hidden="true"></i></a>
 	
 </section>
@@ -263,8 +264,8 @@
 <p><img src="img/06.PNG" alt="연결"></p>
 <p>default DB에 vagrant:vagrant로 연결한다. 다음으로 테스트 쿼리를 실행해본다.</p>
 <p><img src="img/07.PNG" alt="테스트"></p>
-<p>Hive에서는 기본키(PRIMARY KEY)를 지원하지않기 때문에 Column만 설정하고 생성한다. &lsquo;IF NOT EXISTS'를 지정하면 테이블이 없을 때만 생성한다.
-&lsquo;INSERT INTO TABLE'로 데이터를 삽입하는데, &lsquo;INSERT INTO'를 사용하면, 하나의 행만 삽입이 가능하다. 여기에 TABLE 키워드를 넣을 경우 MySQL과 같이 콤마(,)로 구분하여 다수의 행을 삽입할 수 있다.</p>
+<p>Hive에서는 기본키(PRIMARY KEY)를 지원하지않기 때문에 Column만 설정하고 생성한다. &lsquo;IF NOT EXISTS&rsquo;를 지정하면 테이블이 없을 때만 생성한다.
+&lsquo;INSERT INTO TABLE&rsquo;로 데이터를 삽입하는데, &lsquo;INSERT INTO&rsquo;를 사용하면, 하나의 행만 삽입이 가능하다. 여기에 TABLE 키워드를 넣을 경우 MySQL과 같이 콤마(,)로 구분하여 다수의 행을 삽입할 수 있다.</p>
 <p><img src="img/08.PNG" alt="실행결과"></p>
 <p>이제 소스를 저장하고 실행하면, 테이블에 값을 삽입하고, SELECT로 불러옴을 알 수 있다. 기존에 테이블이 이미 생성되어 있어서 2개의 행을 더 출력한다.</p>
 <p><img src="img/09.PNG" alt="로그"></p>
@@ -279,44 +280,44 @@
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HiveTest</span> <span style="color:#f92672">{</span>
  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> String driverName <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;org.apache.hive.jdbc.HiveDriver&#34;</span><span style="color:#f92672">;</span>
 
- <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[</span><span style="color:#f92672">]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+ <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
   <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-   Class<span style="color:#f92672">.</span><span style="color:#a6e22e">forName</span><span style="color:#f92672">(</span>driverName<span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+   Class<span style="color:#f92672">.</span><span style="color:#a6e22e">forName</span><span style="color:#f92672">(</span>driverName<span style="color:#f92672">);</span>
   <span style="color:#f92672">}</span>
   <span style="color:#66d9ef">catch</span><span style="color:#f92672">(</span>ClassNotFoundException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-   e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
-   System<span style="color:#f92672">.</span><span style="color:#a6e22e">exit</span><span style="color:#f92672">(</span>1<span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+   e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+   System<span style="color:#f92672">.</span><span style="color:#a6e22e">exit</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
   <span style="color:#f92672">}</span>
 
   Connection con <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
   Statement stmt <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
   <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-   con <span style="color:#f92672">=</span> DriverManager<span style="color:#f92672">.</span><span style="color:#a6e22e">getConnection</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;jdbc:hive2://hadoop:10000/default&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;vagrant&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;vagrant&#34;</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
-   stmt <span style="color:#f92672">=</span> con<span style="color:#f92672">.</span><span style="color:#a6e22e">createStatement</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+   con <span style="color:#f92672">=</span> DriverManager<span style="color:#f92672">.</span><span style="color:#a6e22e">getConnection</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;jdbc:hive2://hadoop:10000/default&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;vagrant&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;vagrant&#34;</span><span style="color:#f92672">);</span>
+   stmt <span style="color:#f92672">=</span> con<span style="color:#f92672">.</span><span style="color:#a6e22e">createStatement</span><span style="color:#f92672">();</span>
   <span style="color:#f92672">}</span>
   <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>SQLException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-   e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
-   System<span style="color:#f92672">.</span><span style="color:#a6e22e">exit</span><span style="color:#f92672">(</span>1<span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+   e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+   System<span style="color:#f92672">.</span><span style="color:#a6e22e">exit</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
   <span style="color:#f92672">}</span>
 
   <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
    String tableName <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;sample_datas&#34;</span><span style="color:#f92672">;</span>
       ResultSet res<span style="color:#f92672">;</span>
-      stmt<span style="color:#f92672">.</span><span style="color:#a6e22e">execute</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;create table IF NOT EXISTS &#34;</span> <span style="color:#f92672">+</span> tableName <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; (key int, value string)&#34;</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+      stmt<span style="color:#f92672">.</span><span style="color:#a6e22e">execute</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;create table IF NOT EXISTS &#34;</span> <span style="color:#f92672">+</span> tableName <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; (key int, value string)&#34;</span><span style="color:#f92672">);</span>
 
       String sql <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;INSERT INTO TABLE &#34;</span><span style="color:#f92672">+</span>tableName<span style="color:#f92672">+</span><span style="color:#e6db74">&#34; VALUES (1, &#39;test1&#39;), (2, &#39;test2&#39;)&#34;</span><span style="color:#f92672">;</span>
-      stmt<span style="color:#f92672">.</span><span style="color:#a6e22e">execute</span><span style="color:#f92672">(</span>sql<span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+      stmt<span style="color:#f92672">.</span><span style="color:#a6e22e">execute</span><span style="color:#f92672">(</span>sql<span style="color:#f92672">);</span>
 
       sql <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;SELECT key ,value FROM &#34;</span><span style="color:#f92672">+</span>tableName<span style="color:#f92672">;</span>
-      res <span style="color:#f92672">=</span> stmt<span style="color:#f92672">.</span><span style="color:#a6e22e">executeQuery</span><span style="color:#f92672">(</span>sql<span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+      res <span style="color:#f92672">=</span> stmt<span style="color:#f92672">.</span><span style="color:#a6e22e">executeQuery</span><span style="color:#f92672">(</span>sql<span style="color:#f92672">);</span>
 
-      <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>res<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-       System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">printf</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;%d %s\n&#34;</span><span style="color:#f92672">,</span> res<span style="color:#f92672">.</span><span style="color:#a6e22e">getInt</span><span style="color:#f92672">(</span>1<span style="color:#f92672">)</span><span style="color:#f92672">,</span> res<span style="color:#f92672">.</span><span style="color:#a6e22e">getString</span><span style="color:#f92672">(</span>2<span style="color:#f92672">)</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+      <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>res<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+       System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">printf</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;%d %s\n&#34;</span><span style="color:#f92672">,</span> res<span style="color:#f92672">.</span><span style="color:#a6e22e">getInt</span><span style="color:#f92672">(</span>1<span style="color:#f92672">),</span> res<span style="color:#f92672">.</span><span style="color:#a6e22e">getString</span><span style="color:#f92672">(</span>2<span style="color:#f92672">));</span>
       <span style="color:#f92672">}</span>
   <span style="color:#f92672">}</span>
   <span style="color:#66d9ef">catch</span><span style="color:#f92672">(</span>SQLException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-   e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
-   System<span style="color:#f92672">.</span><span style="color:#a6e22e">exit</span><span style="color:#f92672">(</span>1<span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+   e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+   System<span style="color:#f92672">.</span><span style="color:#a6e22e">exit</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
   <span style="color:#f92672">}</span>
  <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span></code></pre></div>
@@ -370,12 +371,11 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
-<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.11.2/js/all.js" integrity="sha384-b3ua1l97aVGAPEIe48b4TC60WUQbQaGi2jqAWM90y0OZXZeyaTCWtBTKtjW2GXG1" crossorigin="anonymous"></script>
 
 
     
-    
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
         
             
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/go.min.js"></script>
@@ -385,7 +385,6 @@ if (!doNotTrack) {
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/cs.min.js"></script>
             
         
-    
     <script type="text/javascript">
         
         hljs.configure({languages: ["go, rust, cs"]});
@@ -393,7 +392,6 @@ if (!doNotTrack) {
         hljs.initHighlightingOnLoad();
     </script>
     
-
 
 
 

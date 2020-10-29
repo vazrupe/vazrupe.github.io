@@ -6,11 +6,7 @@
     <description>Recent content in web on CodeFIct</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr-ko</language>
-    <lastBuildDate>Wed, 08 Feb 2017 20:10:00 +0900</lastBuildDate>
-    
-	<atom:link href="https://codefict.dev/tags/web/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 08 Feb 2017 20:10:00 +0900</lastBuildDate><atom:link href="https://codefict.dev/tags/web/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>쿠키와 세션의 차이</title>
       <link>https://codefict.dev/posts/2017/02/cookie-and-session/</link>

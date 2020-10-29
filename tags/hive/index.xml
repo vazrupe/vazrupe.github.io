@@ -6,11 +6,7 @@
     <description>Recent content in hive on CodeFIct</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr-ko</language>
-    <lastBuildDate>Wed, 20 Jul 2016 11:41:00 +0900</lastBuildDate>
-    
-	<atom:link href="https://codefict.dev/tags/hive/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 20 Jul 2016 11:41:00 +0900</lastBuildDate><atom:link href="https://codefict.dev/tags/hive/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Eclipse에서 JDBC로 Hive 연동하기</title>
       <link>https://codefict.dev/posts/2016/07/connect-hive-with-jdbc-on-eclipse/</link>

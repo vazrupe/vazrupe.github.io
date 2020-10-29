@@ -6,11 +6,7 @@
     <description>Recent content in go on CodeFIct</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>kr-ko</language>
-    <lastBuildDate>Fri, 05 Aug 2016 18:48:00 +0900</lastBuildDate>
-    
-	<atom:link href="https://codefict.dev/tags/go/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 05 Aug 2016 18:48:00 +0900</lastBuildDate><atom:link href="https://codefict.dev/tags/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go에서 io.Seeker 인터페이스로 버퍼 오프셋(offset) 확인하기</title>
       <link>https://codefict.dev/posts/2016/08/check-buffer-offset-on-golang/</link>
